@@ -41,7 +41,7 @@
     "jwtSecretKey": "NTI5NjAxMDZlNWEyYWM2ZjBhOTk5OTkyZDM3OTEyYTAzY2QyNDcxZTZmYTQxODBjZmNiZmYwMDQ4Njc2N2U5OTc3NWMzMjYzOGEyMzZmOGViMDk2NzgwZTYyN2Q4ZTU2MWQzYTliYmY1MWNiNzU4NmY0YjdlYTFiNTQ5Y2Q1OTE=",
     "devServerPort": 4200,
     "clientPackageManager": "npm",
-    "languages": ["en", "hi"],
+    "languages": ["en", "hi", "ja"],
     "enableGradleEnterprise": false,
     "cypressCoverage": true
   }
