@@ -10,30 +10,39 @@
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
-import fs = require('fs');
+import * as fs from 'fs';
 import { lighthouse, pa11y, prepareAudit } from 'cypress-audit';
-import ReportGenerator = require('lighthouse/report/generator/report-generator');
+import generated from '@cypress/code-coverage/task';
+import * as ReportGenerator from 'lighthouse/report/generator/report-generator';
+import PluginEvents = Cypress.PluginEvents;
+import PluginConfigOptions = Cypress.PluginConfigOptions;
+import ConfigOptions = Cypress.ConfigOptions;
+import BrowserLaunchOptions = Cypress.BrowserLaunchOptions;
+import Browser = Cypress.Browser;
 /**
  * @type {Cypress.PluginConfig}
  */
-module.exports = (on, config) => {
+module.exports = (on: PluginEvents, config: PluginConfigOptions): void | ConfigOptions | Promise<ConfigOptions> => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-  on('before:browser:launch', (browser, launchOptions) => {
-    prepareAudit(launchOptions);
-    if (browser.name === 'chrome' && browser.isHeadless) {
-      launchOptions.args.push('--disable-gpu');
-      return launchOptions;
+  on(
+    'before:browser:launch',
+    (browser: Browser, launchOptions: BrowserLaunchOptions): void | BrowserLaunchOptions | Promise<BrowserLaunchOptions> => {
+      prepareAudit(launchOptions);
+      if (browser.name === 'chrome' && browser.isHeadless) {
+        launchOptions.args.push('--disable-gpu');
+        return launchOptions;
+      }
     }
-  });
+  );
 
   on('task', {
-    lighthouse: lighthouse(lighthouseReport => {
+    lighthouse: lighthouse((lighthouseReport: { lhr: any }) => {
       !fs.existsSync('target/cypress') && fs.mkdirSync('target/cypress', { recursive: true });
       fs.writeFileSync('target/cypress/lhreport.html', ReportGenerator.generateReport(lighthouseReport.lhr, 'html'));
     }),
     pa11y: pa11y(),
   });
-  require('@cypress/code-coverage/task')(on, config);
+  generated(on, config);
   return config;
 };
