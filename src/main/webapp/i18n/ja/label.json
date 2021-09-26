@@ -1,0 +1,25 @@
+{
+  "bugTrackerJHipsterApp": {
+    "label": {
+      "home": {
+        "title": "Labels",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Label を追加",
+        "createOrEditLabel": "Labelを追加または編集",
+        "notFound": "No Labels found"
+      },
+      "created": "A new Label is created with identifier {{ param }}",
+      "updated": "A Label is updated with identifier {{ param }}",
+      "deleted": "A Label is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Label {{ id }}を削除してもよろしいですか？"
+      },
+      "detail": {
+        "title": "Label"
+      },
+      "id": "ID",
+      "value": "Value",
+      "ticket": "Ticket"
+    }
+  }
+}

@@ -43,6 +43,8 @@
     "clientPackageManager": "npm",
     "languages": ["en", "hi", "ja"],
     "enableGradleEnterprise": false,
-    "cypressCoverage": true
+    "cypressCoverage": true,
+    "entities": ["Project", "Label", "Ticket"],
+    "lastLiquibaseTimestamp": 1632551168000
   }
 }

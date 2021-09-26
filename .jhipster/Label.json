@@ -1,0 +1,28 @@
+{
+  "name": "Label",
+  "fields": [
+    {
+      "fieldName": "value",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "ticket",
+      "otherEntityRelationshipName": "label",
+      "relationshipName": "ticket",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "label",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210925062607"
+}
