@@ -12,12 +12,14 @@
 // the project's config changing)
 import * as fs from 'fs';
 import { lighthouse, pa11y, prepareAudit } from 'cypress-audit';
-import ReportGenerator = require('lighthouse/report/generator/report-generator');
+import generated from '@cypress/code-coverage/task';
+import * as ReportGenerator from 'lighthouse/report/generator/report-generator';
 import PluginEvents = Cypress.PluginEvents;
 import PluginConfigOptions = Cypress.PluginConfigOptions;
 import ConfigOptions = Cypress.ConfigOptions;
 import BrowserLaunchOptions = Cypress.BrowserLaunchOptions;
 import Browser = Cypress.Browser;
+
 /**
  * @type {Cypress.PluginConfig}
  */
@@ -42,6 +44,6 @@ module.exports = (on: PluginEvents, config: PluginConfigOptions): void | ConfigO
     }),
     pa11y: pa11y(),
   });
-  require('@cypress/code-coverage/task')(on, config);
+  generated(on, config);
   return config;
 };
