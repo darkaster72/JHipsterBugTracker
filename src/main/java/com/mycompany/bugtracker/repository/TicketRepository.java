@@ -16,6 +16,10 @@ import reactor.core.publisher.Mono;
 public interface TicketRepository extends ReactiveMongoRepository<Ticket, String> {
     Flux<Ticket> findAllBy(Pageable pageable);
 
+    Flux<Ticket> findAllByOrderByDueDateAsc(Pageable pageable);
+
+    Flux<Ticket> findByAssignedTo_Id(String login);
+
     @Query("{}")
     Flux<Ticket> findAllWithEagerRelationships(Pageable pageable);
 

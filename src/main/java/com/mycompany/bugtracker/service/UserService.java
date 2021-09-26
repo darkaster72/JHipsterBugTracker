@@ -11,7 +11,8 @@ import com.mycompany.bugtracker.service.dto.AdminUserDTO;
 import com.mycompany.bugtracker.service.dto.UserDTO;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Pageable;
@@ -27,7 +28,7 @@ import tech.jhipster.security.RandomUtil;
  * Service class for managing users.
  */
 @Service
-public class UserService {
+public class UserService implements IUserService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
@@ -219,9 +220,7 @@ public class UserService {
      * @return a completed {@link Mono}.
      */
     public Mono<Void> updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
-        return SecurityUtils
-            .getCurrentUserLogin()
-            .flatMap(userRepository::findOneByLogin)
+        return getCurrentUser()
             .flatMap(user -> {
                 user.setFirstName(firstName);
                 user.setLastName(lastName);
@@ -250,9 +249,7 @@ public class UserService {
     }
 
     public Mono<Void> changePassword(String currentClearTextPassword, String newPassword) {
-        return SecurityUtils
-            .getCurrentUserLogin()
-            .flatMap(userRepository::findOneByLogin)
+        return getCurrentUser()
             .publishOn(Schedulers.boundedElastic())
             .map(user -> {
                 String currentEncryptedPassword = user.getPassword();
@@ -266,6 +263,11 @@ public class UserService {
             .flatMap(this::saveUser)
             .doOnNext(user -> log.debug("Changed password for User: {}", user))
             .then();
+    }
+
+    @Override
+    public Mono<User> getCurrentUser() {
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
 
     public Flux<AdminUserDTO> getAllManagedUsers(Pageable pageable) {
@@ -285,7 +287,7 @@ public class UserService {
     }
 
     public Mono<User> getUserWithAuthorities() {
-        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
+        return getCurrentUser();
     }
 
     /**
@@ -307,6 +309,7 @@ public class UserService {
 
     /**
      * Gets a list of all the authorities.
+     *
      * @return a list of all the authorities.
      */
     public Flux<String> getAuthorities() {

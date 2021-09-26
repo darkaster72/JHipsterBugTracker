@@ -8,10 +8,8 @@ import static org.mockito.Mockito.*;
 import com.mycompany.bugtracker.IntegrationTest;
 import com.mycompany.bugtracker.domain.Ticket;
 import com.mycompany.bugtracker.repository.TicketRepository;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,13 +19,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * Integration tests for the {@link TicketResource} REST controller.
@@ -66,7 +61,7 @@ class TicketResourceIT {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -77,7 +72,7 @@ class TicketResourceIT {
 
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -438,6 +433,7 @@ class TicketResourceIT {
     }
 
     @Test
+    @WithMockUser(roles = { "USER", "ADMIN" })
     void deleteTicket() {
         // Initialize the database
         ticketRepository.save(ticket).block();
