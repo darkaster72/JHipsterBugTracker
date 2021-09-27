@@ -1,0 +1,24 @@
+{
+  "bugTrackerJHipsterApp": {
+    "project": {
+      "home": {
+        "title": "Projects",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Project を追加",
+        "createOrEditLabel": "Projectを追加または編集",
+        "notFound": "No Projects found"
+      },
+      "created": "A new Project is created with identifier {{ param }}",
+      "updated": "A Project is updated with identifier {{ param }}",
+      "deleted": "A Project is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Project {{ id }}を削除してもよろしいですか？"
+      },
+      "detail": {
+        "title": "Project"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}

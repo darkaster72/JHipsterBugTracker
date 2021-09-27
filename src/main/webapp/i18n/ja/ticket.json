@@ -1,0 +1,30 @@
+{
+  "bugTrackerJHipsterApp": {
+    "ticket": {
+      "home": {
+        "title": "Tickets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Ticket を追加",
+        "createOrEditLabel": "Ticketを追加または編集",
+        "notFound": "No Tickets found"
+      },
+      "created": "A new Ticket is created with identifier {{ param }}",
+      "updated": "A Ticket is updated with identifier {{ param }}",
+      "deleted": "A Ticket is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Ticket {{ id }}を削除してもよろしいですか？"
+      },
+      "detail": {
+        "title": "Ticket"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "dueDate": "Due Date",
+      "done": "Done",
+      "project": "Project",
+      "assignedTo": "Assigned To",
+      "label": "Label"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "bugTrackerJHipsterApp": {
+    "ticket": {
+      "home": {
+        "title": "Tickets",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "नया Ticket बनाएँ",
+        "createOrEditLabel": "Ticket बनाएँ या संपादित करें",
+        "notFound": "No Tickets found"
+      },
+      "created": "एक नया Ticket [identifier: {{ param }}] तैयार है",
+      "updated": "एक Ticket [identifier: {{ param }}] का अद्यतन हुआ है",
+      "deleted": "Ticket [identifier: {{ param }}] हटा दिया है",
+      "delete": {
+        "question": "Ticket [id: {{ id }}] हटाने की पुष्टि करें"
+      },
+      "detail": {
+        "title": "Ticket"
+      },
+      "id": "ID",
+      "title": "Title",
+      "description": "Description",
+      "dueDate": "Due Date",
+      "done": "Done",
+      "project": "Project",
+      "assignedTo": "Assigned To",
+      "label": "Label"
+    }
+  }
+}
